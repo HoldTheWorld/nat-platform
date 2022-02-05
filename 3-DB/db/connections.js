@@ -1,6 +1,7 @@
 const {Sequelize} = require('sequelize');
+require('dotenv').config();
 
-const sequelize = new Sequelize('company2', 'admin', '123', {
+const sequelize = new Sequelize(process.env.DB, process.env.USER, process.env.PASS, {
   host: 'localhost',
   dialect: 'postgres',
   }); 
@@ -14,7 +15,7 @@ const sequelize = new Sequelize('company2', 'admin', '123', {
       console.error('Unable to connect to the database:', error);
     }
   }
-  testBD()
+  testBD();
 
   async function closeConnection() {
     try {

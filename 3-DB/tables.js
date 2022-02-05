@@ -1,4 +1,4 @@
-const db = require('./db/connections')
+const db = require('./db/connections');
 
 async function createTables() {
   try {
@@ -14,17 +14,14 @@ async function createTables() {
       name VARCHAR(30) NOT NULL,
       dep_id INTEGER REFERENCES departments (id) ON DELETE CASCADE
     );
-    
     `)
-  } catch(err)
- {
-   console.log(err)
- }
+  } catch(err) {
+   console.log(err);
+  }
 }
-
 //  createTables()
 
-async function dropper () {
+async function dropper() {
   await db.query(`
   DROP TABLE IF EXISTS departments;
   DROP TABLE IF EXISTS workers;

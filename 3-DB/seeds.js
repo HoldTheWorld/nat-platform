@@ -7,15 +7,13 @@ const workers = [
   ['Svetlana Ivanova', 1],
   ['Denis Denisov', 3],
   ['Oksana Sergeeva', 3]
-]
+];
 
 const departments = [
   ['IT', 'informational technologies'],
   ['QA', 'quality assurance '],
   ['HR', 'human resources']
-]
-
-
+];
 
 const addDepartments = async () => {
   try {
@@ -24,14 +22,11 @@ const addDepartments = async () => {
     `, {
       replacements: [departments]
     })
-
   } catch (err) {
     console.log(err);
   }
 }
-
 // addDepartments(); 
-
 
 const addWorkers = async () => {
   try {
@@ -40,14 +35,11 @@ const addWorkers = async () => {
     `, {
       replacements: [workers]
     })
-
   } catch (err) {
     console.log(err);
   }
 }
-
 // addWorkers(); 
-
 
 const clearDB = async () => {
   try {
@@ -57,10 +49,8 @@ const clearDB = async () => {
     db.query(`
     DELETE FROM departments;
     `)
-
   } catch (err) {
     console.log(err);
   }
 }
-
 // clearDB()
