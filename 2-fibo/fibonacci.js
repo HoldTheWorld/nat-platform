@@ -2,18 +2,21 @@ function fibo(num) {
   return num <= 1 ? num : fibo(num - 1) + fibo(num - 2);
 }
 
-function decorator(func) {
-  let cache = new Map();
-  return function(x) {
-    if(cache.has(x)) {
-      return cache.get(x);
-    }
-    let result = func(x);
-    cache.set(x, result);
+let timers = {};
+
+function timeDecorator(f, timer) {
+  return function() {
+    let start = performance.now()
+    let result = f.apply(this, arguments);
+
+    if(!timers[timer]) timers[timer] = 0;
+    timers[timer] += performance.now() - start;
     return result;
+
   }
 }
 
-fibo = decorator(fibo);
-console.log('first evocation result: ' + fibo(7));
-console.log('result got from cache: ' + fibo(7));
+fibonacci = timeDecorator(fibo, 'fibo');
+console.log(fibonacci(7));
+console.log(timers.fibo);
+
